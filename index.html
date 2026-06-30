@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TechMart Premium Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="showListingView()"> TechMart</div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <div class="nav-link" onclick="showWishlistView()" style="cursor: pointer; background: #f59e0b; color: white; padding: 0.6rem 1.2rem; border-radius: 30px; font-weight: 600; transition: opacity 0.2s;">
+                ❤️ Wishlist (<span id="nav-wishlist-count">0</span>)
+            </div>
+            <div class="nav-cart" onclick="showCartView()">
+                🛒 My Cart (<span id="nav-cart-count">0</span>) — $<span id="nav-cart-total">0.00</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div id="listing-view">
+            <div class="controls" style="flex-wrap: wrap; gap: 1.5rem;">
+                <input type="text" id="search-box" class="search-box" placeholder="🔍 Search products..." onkeyup="handleSearch()">
+                <select id="category-filter" onchange="renderProducts()">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="audio">Audio</option>
+                    <option value="wearables">Wearables</option>
+                </select>
+                <select id="price-sort" onchange="renderProducts()">
+                    <option value="default">Sort Options</option>
+                    <option value="low-high">Price: Low to High</option>
+                    <option value="high-low">Price: High to Low</option>
+                </select>
+            </div>
+
+            <div class="product-grid" id="product-grid"></div>
+        </div>
+
+        <div id="detail-view" class="view-hidden">
+            <button class="btn back-btn" onclick="showListingView()">← Back to Store</button>
+            <div class="detail-page" id="detail-page-content"></div>
+        </div>
+
+        <div id="wishlist-view" class="view-hidden">
+            <button class="btn back-btn" onclick="showListingView()">← Back to Store</button>
+            <div class="cart-page">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 1rem;">
+                    <h2>My Wishlist ❤️</h2>
+                    <button class="btn btn-danger" style="padding: 0.5rem 1rem;" onclick="clearWishlist()">Clear Wishlist</button>
+                </div>
+                <div id="wishlist-items-container"></div>
+            </div>
+        </div>
+
+        <div id="cart-view" class="view-hidden">
+            <button class="btn back-btn" onclick="showListingView()">← Keep Shopping</button>
+            <div class="cart-page">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 1rem;">
+                    <h2>Shopping Cart</h2>
+                    <button class="btn btn-danger" style="padding: 0.5rem 1rem;" onclick="clearCart()">Clear Cart</button>
+                </div>
+                <div id="cart-items-container"></div>
+                <div class="cart-summary">
+                    Subtotal: $<span id="cart-page-total">0.00</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
